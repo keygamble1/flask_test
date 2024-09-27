@@ -1,0 +1,24 @@
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    {% for field,errors in form.errors.items() %}
+
+        <strong>{{form[field].label}} </strong>
+        <!--property에서 errors.items() 딕셔너리로되어있고,
+        field는 키값이라고보면됨 [None]에서 골라서 싹출력함-->
+    <ul>
+        {% for error in errors %}
+            <li>{{error}} </li>
+        {% endfor %}
+    </ul>
+        {% endfor %}
+    
+
+</div>
+
+{% endif %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-danger" role="alert">
+    {{message}}
+</div>
+{% endfor %}

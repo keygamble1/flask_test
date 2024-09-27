@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-3">
+    <h5 class="my-3 border-bottom pb-2">질문등록</h5>
+    <!--my 는 위 bp 는 아래 이런식으로그냥 인식 그리고 한줄 지우려면 shift+delete-->
+    <form class="my-3" method="post">
+        
+        <!--action안정해줘서 default 메소드로 들어감-->
+        <!--이 action url은 views에서 redirect로 변경시킴-->
+        {{form.csrf_token}}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field, errors in form.errors.items() %}
+            <strong>{{ form[field].label }}</strong>
+            <ul>
+                {% for error in errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="mb-3">
+            <label for="subject">제목</label>
+            <input type="text" class="form-control" name="subject",id="subject"
+                value="{{form.subject.data or ''}}">
+        </div>
+        <div class="mb-3">
+            <label for="content">내용</label>
+            <textarea class="form-control" name="content" id="content" rows="10"
+             value="{{form.content.data or ''}}"></textarea>
+        </div>
+
+
+        
+        <button type="submit" class="btn btn-primary">저장하기</button>
+    </form>
+</div>
+
+
+{% endblock  %}
