@@ -51,7 +51,7 @@ def _list():
     
     question_list=question_list.paginate(page=page,per_page=10)
  
-    # question_list=이제 list/?page=5 이런식으로나오며 객체전달해서 method상가능
+    # question_list=이제 list/?page=5 이런식으로나오며 객체전달해서 method상가능d
     return render_template('question/question_list.html', question_list=question_list,page=page,kw=kw)
 
 @bp.route('/detail/<int:question_id>')
